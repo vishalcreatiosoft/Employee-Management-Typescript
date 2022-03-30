@@ -8,3 +8,8 @@ export interface EmployeeType {
     salary ?: number;
 }
 
+export interface EntrySchemaType {
+    firstname : string;
+    lastname : string;
+    createdAt : any;
+}

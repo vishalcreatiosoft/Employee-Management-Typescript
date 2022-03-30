@@ -35,4 +35,4 @@ const EmployeeSchema = new Schema<EmployeeType>({
 });
 
 
-export default model<EmployeeType>('Registration', EmployeeSchema);
+export default model<EmployeeType>('Registration', EmployeeSchema, 'employeeProfileData');

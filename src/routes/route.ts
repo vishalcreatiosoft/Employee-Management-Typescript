@@ -1,5 +1,6 @@
 import { Router } from "express";
 import registerEmployee from "../services/registration";
+import manageAttendance from "../services/attendance";
 
 const router = Router();
 
@@ -33,6 +34,11 @@ router.get('/getEmployeeById/:id',(req, res)=>{
 router.delete('/deleteEmployee/:id',(req, res)=>{
     registerEmployee.deleteEmployee(req, res);
 });
+
+//store entry time to make attendance of employee
+router.post('/makeAttendance/:id',(req, res)=>{
+    manageAttendance.makeAttendance(req, res);
+})
 
 
 
