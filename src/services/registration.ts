@@ -29,9 +29,14 @@ class RegisterEmployee {
         const query : object = {}
             
         try{
-            const data = await Registration.find(query) 
-            .then(data=>{
-                res.status(201).send({success : true, result : data})
+            await Registration.find(query) 
+            .then(response=>{
+
+                let names : Array<string> = [];
+                for(let data of response){
+                    names.push(`${data.firstname} ${data.lastname}`);
+                }
+                res.status(201).send({success : true, allEmployeeNames : names, result : response});
             }) 
             .catch(error=>{
                 res.status(403).send({success : true, result : 'employee data not found'})  
@@ -96,9 +101,7 @@ class RegisterEmployee {
     async deleteEmployee(req : Request, res : Response) {
 
         const { id } = req.params;
-        const query : any = {};
-        query._id = new mongoose.Types.ObjectId(id);
-                   
+                           
         try{
             await Registration.findOneAndDelete({_id : id}) 
             .then(response=>{
