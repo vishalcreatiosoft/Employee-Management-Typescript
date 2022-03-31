@@ -1,10 +1,15 @@
 import { Router } from "express";
-import registerEmployee from "../services/registration";
-import manageAttendance from "../services/attendance";
-import manageProject from "../services/allocateProject";
+import registerEmployee from "../services/registrationService";
+import manageAttendance from "../services/attendanceService";
+import manageProject from "../services/projectAllocationService";
+import adminService from "../services/adminService";
 
 const router = Router();
 
+//Register admin
+router.post('/register-admin',(req, res)=>{
+    adminService.registerAdmin(req, res);
+})
 
 //Register new employee
 router.post('/register-employee', (req, res)=>{

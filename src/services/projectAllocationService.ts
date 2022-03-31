@@ -79,14 +79,20 @@ class Project {
 
         const { project } = req.body;
         const projectList : Array<object> = [];
-        const allProjects = await EmployeeProject.find({});
+                
+        await EmployeeProject.find({})
+            .then((allProjects)=>{
+                for(let requiredProject of allProjects){
+                    if(requiredProject.project == project){
+                        projectList.push(requiredProject);
+                    }
+                }
+                res.send({success : true, result : projectList});
+            })
+            .catch(()=>{
+                res.send({success : false, result : 'This Project is not found'});
+            })
         
-        for(let requiredProject of allProjects){
-            if(requiredProject.project == project){
-                projectList.push(requiredProject);
-            }
-        }
-        res.send({success : true, result : projectList});
     }
 
 

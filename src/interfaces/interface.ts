@@ -22,3 +22,10 @@ export interface ProjectType {
     projectManager : string;
 }
 
+export interface AdminType {
+    role : string;
+    name : string;
+    email : string;
+    mobile : number;
+    password : string;
+}
