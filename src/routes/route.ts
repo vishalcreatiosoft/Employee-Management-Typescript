@@ -5,11 +5,6 @@ import manageProject from "../services/allocateProject";
 
 const router = Router();
 
-//testing route
-router.get('/',(req, res)=>{
-    res.send('Landing page from router');
-});
-
 
 //Register new employee
 router.post('/register-employee', (req, res)=>{
@@ -56,6 +51,10 @@ router.post('/getEmployeeProject',(req, res)=>{
     manageProject.getEmployeeProject(req, res);
 })
 
+// list of employee on a project
+router.post('/listProjectEmployee',(req, res)=>{
+    manageProject.getlistProjectEmployee(req, res);
+})
 
 
 

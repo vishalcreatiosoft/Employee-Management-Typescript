@@ -74,6 +74,22 @@ class Project {
         }
     }
 
+
+    async getlistProjectEmployee(req: Request, res:Response){
+
+        const { project } = req.body;
+        const projectList : Array<object> = [];
+        const allProjects = await EmployeeProject.find({});
+        
+        for(let requiredProject of allProjects){
+            if(requiredProject.project == project){
+                projectList.push(requiredProject);
+            }
+        }
+        res.send({success : true, result : projectList});
+    }
+
+
 }
 
 
