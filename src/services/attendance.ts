@@ -1,13 +1,13 @@
-import EntryTime from '../models/register-emp-model';
+import EntryTime from '../models/entry-model';
 import Registration from '../models/register-emp-model';
-import { Request, response, Response } from 'express';
+import { Request,  Response } from 'express';
 
 
 
 class ManageAttendance {
 
 
-    async checkEmployeeExists (id : string | number){
+    checkEmployeeExists (id : string | number){
         return new Promise((resolve, reject)=>{
             Registration.findById(id)
                 .then((response : any)=>{
@@ -19,25 +19,45 @@ class ManageAttendance {
         })
     }
 
-
-
-    async makeAttendance(req : Request, res : Response){
+    async makeAttendance (req : Request, res : Response){
 
         const { id } = req.params;
         const checkEmployee : any = await this.checkEmployeeExists(id);
         if(checkEmployee.success){
-            const entryTime = new EntryTime();
-            const attendance : any = await entryTime.save(req.body)
-            if(attendance){
-                res.send({success : true, result : 'Attendance UpLoaded'});
-            }else{
-                res.send({success : false, result : 'Error in Attendance UpLoading'});
+
+            const entryData = {
+                employeeId : `${checkEmployee.result.employeeId}`,
+                name : `${checkEmployee.result.firstname} ${checkEmployee.result.lastname}`   
             }
+            const entryDetail = new EntryTime(entryData);
+            await entryDetail.save()
+                .then(()=>{
+                    res.status(201).send({success : true, result : 'Attendance Marked'});
+                }) 
+                .catch((error: any)=>{
+                    res.status(403).send({success : false, result : `Error occurred ${error}`})  
+                })
+            
         }
-        
-
-
+        else{
+            res.status(401).send({success : false, result : 'Unauthorized Employee'});
+        }
     }
+
+    async getAttendanceReport(req:Request, res:Response){
+        const employeeId = req.body.employeeId;
+        const query : any = {}
+        query.employeeId = employeeId;
+        await EntryTime.find(query)
+            .then((response)=>{
+                res.status(201).send({success : true, result : response});
+            })
+            .catch(()=>{
+                res.status(401).send({success : true, result : 'No Records found'});
+            });
+    }
+
+    
 
 
 }

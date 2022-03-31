@@ -4,6 +4,12 @@ import { EmployeeType } from "../interfaces/interface";
 
 const EmployeeSchema = new Schema<EmployeeType>({
 
+    employeeId : {
+        type : String,
+        required : true,
+        trim : true,
+        unique : true
+    },
     firstname : {
         type : String,
         trim : true,

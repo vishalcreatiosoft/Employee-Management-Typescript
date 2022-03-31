@@ -1,6 +1,7 @@
 import { Router } from "express";
 import registerEmployee from "../services/registration";
 import manageAttendance from "../services/attendance";
+import manageProject from "../services/allocateProject";
 
 const router = Router();
 
@@ -11,7 +12,7 @@ router.get('/',(req, res)=>{
 
 
 //Register new employee
-router.post('/register-employee', async(req, res)=>{
+router.post('/register-employee', (req, res)=>{
     registerEmployee.registerEmp(req, res);
 });
 
@@ -38,6 +39,21 @@ router.delete('/deleteEmployee/:id',(req, res)=>{
 //store entry time to make attendance of employee
 router.post('/makeAttendance/:id',(req, res)=>{
     manageAttendance.makeAttendance(req, res);
+});
+
+//get specific employee attendance history
+router.post('/getEmployeeAttendanceReport',(req, res)=>{
+    manageAttendance.getAttendanceReport(req, res);
+});
+
+//Allocated projects to employees
+router.post('/allocateProject',(req, res)=>{
+    manageProject.allocateProject(req, res);
+})
+
+// find which project is allocated to specific employee
+router.post('/getEmployeeProject',(req, res)=>{
+    manageProject.getEmployeeProject(req, res);
 })
 
 

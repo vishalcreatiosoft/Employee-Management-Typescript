@@ -1,5 +1,6 @@
 
 export interface EmployeeType {
+    employeeId : string;
     firstname : string;
     lastname : string;
     email : string;
@@ -9,7 +10,15 @@ export interface EmployeeType {
 }
 
 export interface EntrySchemaType {
-    firstname : string;
-    lastname : string;
-    createdAt : any;
+    employeeId : string | number;
+    name : string;
 }
+
+export interface ProjectType {
+    employeeId : string ;
+    name : string;
+    project : string;
+    role : string;
+    projectManager : string;
+}
+

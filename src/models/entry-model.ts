@@ -3,20 +3,14 @@ import { EntrySchemaType } from "../interfaces/interface";
 
 const EntrySchema = new Schema<EntrySchemaType>({
 
-       firstname : {
-        type : String,
-        trim : true
+    employeeId : {
+        type : String
     },
-    lastname : {
-        type : String,
-        trim : true
-    },
-    createdAt : {
-        required : true,
-        type : Date,
-        Default : Date.now
-    } 
-    
+    name : {
+        type : String
+    }
+},{
+    timestamps: { createdAt: true, updatedAt: false }
 });
 
 export default model<EntrySchemaType>('EntryTime',EntrySchema,'attendanceReport');

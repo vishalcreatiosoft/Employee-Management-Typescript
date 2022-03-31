@@ -1,5 +1,5 @@
 import Registration from '../models/register-emp-model';
-import { Request, response, Response } from 'express';
+import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 
 class RegisterEmployee {
@@ -9,12 +9,13 @@ class RegisterEmployee {
   
         try{
             const register = new Registration(req.body);
+            //console.log(register);
             const data = await register.save()
-                .then(data=>{
-                    res.status(201).send({success : true, result : 'employee registered successfully'})
+                .then(()=>{
+                    res.status(201).send({success : true, result : 'employee registered successfully'});
                 }) 
                 .catch(error=>{
-                    res.status(403).send({success : true, result : 'employee data not found'})  
+                    res.status(403).send({success : false, result : 'Error while registration'});  
                 })
 
         }catch(error){
