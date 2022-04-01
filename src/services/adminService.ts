@@ -1,11 +1,10 @@
 import AdminRegistration from '../models/admin-model';
 import MongoStore from 'connect-mongo';
-import Session from '../models/session-model'
 import express, {Request, Response} from 'express';
 import session , { SessionOptions } from 'express-session';
 import passport from 'passport';
 import passportLocal from 'passport-local'
-import { LoginCredentialsType } from '../interfaces/interface';
+import bcrypt from 'bcrypt';
 
 const openRoutes = [
     { uri: '/login', method: 'POST' }
@@ -18,12 +17,16 @@ class AdminService {
         
         const { role, name, email, mobile, password } = req.body;
         let query : any = {};
+
+        const salt = await bcrypt.genSalt(10);
+        const encryptedPassword : string = await bcrypt.hash(password, salt)
+
         query = {
             role,
             name,
             email,
             mobile,
-            password
+            encryptedPassword
         }
          
         const adminRegistration = new AdminRegistration(query);
@@ -36,42 +39,7 @@ class AdminService {
             });
     }
 
-
-    // async checkAdminExist(params : LoginCredentialsType){
-
-    //     let query : any = {}
-    //     query.email = params.email
-        
-    //     return new Promise((resolve, reject)=>{
-    //         AdminRegistration.find(query)
-    //             .then((response : any)=>{
-    //                 if(response[0].password == params.password){
-    //                     resolve({success : true, result : 'Logged In Successfully'});
-    //                 }
-    //                 else{
-    //                     reject({success : false, result : 'Invalid Password '});
-    //                 }   
-    //             })
-    //             .catch(()=>{
-    //                 reject({success : false, result : 'Invalid Email '});
-    //             });
-    //     })
-        
-    // }
-    // async loginAdmin(req : Request, res : Response){     
-    //     const params = req.body;
-    //     const checkAdmin : any = await this.checkAdminExist(params);
-    //     if(!checkAdmin.success){
-    //        res.status(401).send(checkAdmin.result);
-    //     }
-    //     if(checkAdmin.success){
-    //        res.status(201).send({success : true, result : checkAdmin.result});
-    //     }
-    // }
-
-
-
-    
+   
     config(app: express.Application) {
         
         const sessionParams : SessionOptions = {
@@ -83,7 +51,7 @@ class AdminService {
             cookie: {
                 secure: process.env.ENABLE_HTTPS === "true",
                 path: '/',
-                maxAge: 1000 * 60 * 24, // 24 hours
+                maxAge: 1000 * 60 * 24, // 1 hour
                 sameSite: 'lax',
                 httpOnly: true
             }
@@ -109,20 +77,23 @@ class AdminService {
                 
             let query : any = {};
             query = {
-                username,
-                password
+                username
             }    
             const getAdminDetail = await AdminRegistration.find(query)
 
-
-
             if(getAdminDetail.length !== 0){
-                done(null, { username: getAdminDetail[0].email });
-            }else if(getAdminDetail.length === 0){
-                done(new Error('Invalid username or password'));
+               
+                const passwordCompare = await bcrypt.compare(password, getAdminDetail[0].encryptedPassword,function(err, result) {
+                    if(result){
+                        done(null, { username: getAdminDetail[0].email });
+                    }else if(err){
+                        done(new Error('Invalid Password'));
+                    }
+                });
+            }else if(getAdminDetail.length !== 0){
+                done(new Error('Invalid Email'));
             }
-           
-
+                       
 
         }));
 
@@ -137,13 +108,12 @@ class AdminService {
     }
 
     loginAdmin(req: Request, res: Response) {
-        console.log('inside admin login method');
+        
         passport.authenticate('local', (err, user, info) => {
             if (err) {
                 return res.status(401).send({ success: false, info: err.message });
             }
             req.login(user, (err) => {
-                console.log('inside req.login');
                 if (err) {
                     return res.status(500).send({ success: false, info: err.message });
                 } else {
@@ -155,7 +125,7 @@ class AdminService {
 
     logout(req: Request, res: Response) {
         req.logout();
-        res.send({})  ;
+        res.send({success : true , result : 'Logged Out Successfully'});
     };
 
     isOpen(req: Request) {

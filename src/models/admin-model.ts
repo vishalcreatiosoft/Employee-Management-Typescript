@@ -22,7 +22,7 @@ const adminSchema = new Schema<AdminType>({
         unique : true
 
     },
-    password : {
+    encryptedPassword : {
         type : String,
         trim : true,
     }

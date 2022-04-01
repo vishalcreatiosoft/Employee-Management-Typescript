@@ -3,7 +3,7 @@ import http from 'http';
 import router from './routes/route';
 import adminService from './services/adminService';
 import mongoConnection from './utils/mongodbConnection';
-import cookieParser from 'cookie-parser';
+
 
 const port = process.env.PORT || 3000;
 

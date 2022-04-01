@@ -27,7 +27,7 @@ export interface AdminType {
     name : string;
     email : string;
     mobile : number;
-    password : string;
+    encryptedPassword : string;
 }
 
 export interface LoginCredentialsType {
