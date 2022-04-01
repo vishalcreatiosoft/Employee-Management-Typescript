@@ -20,6 +20,8 @@
     },
     "homepage": "https://github.com/vishalcreatiosoft/Employee-Management-Typescript#readme",
     "dependencies": {
+        "connect-mongo": "^4.6.0",
+        "cookie-parser": "^1.4.6",
         "express": "^4.17.3",
         "express-session": "^1.17.2",
         "http": "^0.0.1-security",
@@ -28,6 +30,7 @@
         "passport-local": "^1.0.0"
     },
     "devDependencies": {
+        "@types/cookie-parser": "^1.4.2",
         "@types/express": "^4.17.13",
         "@types/express-session": "^1.17.4",
         "@types/node": "^17.0.23",

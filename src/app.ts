@@ -1,8 +1,9 @@
 import express from 'express';
 import http from 'http';
 import router from './routes/route';
+import adminService from './services/adminService';
 import mongoConnection from './utils/mongodbConnection';
-
+import cookieParser from 'cookie-parser';
 
 const port = process.env.PORT || 3000;
 
@@ -11,8 +12,9 @@ mongoConnection.init();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(router);
 
+adminService.config(app);
+app.use('/',router);
 
 
 

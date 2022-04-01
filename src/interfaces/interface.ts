@@ -29,3 +29,8 @@ export interface AdminType {
     mobile : number;
     password : string;
 }
+
+export interface LoginCredentialsType {
+    email : string;
+    password : string | number;
+}

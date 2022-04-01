@@ -6,6 +6,7 @@
         "firstname",
         "getlist",
         "lastname",
+        "resave",
         "updatekeys"
     ]
 }
