@@ -60,13 +60,13 @@ class AdminService {
         app.use(session(sessionParams));
         app.use(passport.initialize());
         app.use(passport.session());
-        app.use((req, res, next) => {
-            if (!this.isOpen(req) && !req.isAuthenticated()) {
-                res.status(403).send({success : false, result : 'Not authenticated'});
-            } else {
-                next();
-            }
-        });
+        // app.use((req, res, next) => {
+        //     if (!this.isOpen(req) && !req.isAuthenticated()) {
+        //         res.status(403).send({success : false, result : 'Not authenticated'});
+        //     } else {
+        //         next();
+        //     }
+        // });
 
         passport.use(new passportLocal.Strategy(
             {
@@ -110,10 +110,13 @@ class AdminService {
     loginAdmin(req: Request, res: Response) {
         
         passport.authenticate('local', (err, user, info) => {
+            console.log('inside authenticate method ===>');
             if (err) {
+                console.log('inside error', err);
                 return res.status(401).send({ success: false, info: err.message });
             }
             req.login(user, (err) => {
+                console.log('inside req.login ')
                 if (err) {
                     return res.status(500).send({ success: false, info: err.message });
                 } else {

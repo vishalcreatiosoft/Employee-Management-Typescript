@@ -1,0 +1,51 @@
+2022-07-29 13:33:47 [32minfo[39m : This is register admin info
+2022-07-29 13:33:47 [33mwarn[39m : This is register admin warn
+2022-07-29 13:35:39 [32minfo[39m : This is register admin info
+2022-07-29 13:35:39 [33mwarn[39m : This is register admin warn
+2022-07-29 13:35:39 [31merror[39m : Error: This is register admin error
+    at /home/vishal/learning/code/typescript/Employee-Management-Typescript/src/routes/route.ts:37:18
+    at Layer.handle [as handle_request] (/home/vishal/learning/code/typescript/Employee-Management-Typescript/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/vishal/learning/code/typescript/Employee-Management-Typescript/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/vishal/learning/code/typescript/Employee-Management-Typescript/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/vishal/learning/code/typescript/Employee-Management-Typescript/node_modules/express/lib/router/layer.js:95:5)
+    at /home/vishal/learning/code/typescript/Employee-Management-Typescript/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/vishal/learning/code/typescript/Employee-Management-Typescript/node_modules/express/lib/router/index.js:341:12)
+    at next (/home/vishal/learning/code/typescript/Employee-Management-Typescript/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/home/vishal/learning/code/typescript/Employee-Management-Typescript/node_modules/express/lib/router/index.js:174:3)
+    at router (/home/vishal/learning/code/typescript/Employee-Management-Typescript/node_modules/express/lib/router/index.js:47:12)
+2022-07-29 13:35:58 [32minfo[39m : This is login admin info
+2022-07-29 13:35:58 [33mwarn[39m : This is login admin warn
+{"level":"\u001b[32minfo\u001b[39m","message":"This is login admin info","timestamp":"2022-07-29 13:42:03"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"This is login admin warn","timestamp":"2022-07-29 13:42:03"}
+{"level":"info","message":"This is login admin info","timestamp":"2022-07-29 13:42:26"}
+{"level":"warn","message":"This is login admin warn","timestamp":"2022-07-29 13:42:26"}
+{"level":"info","message":"This is login admin info","timestamp":"2022-07-29 15:23:42"}
+{"level":"warn","message":"This is login admin warn","timestamp":"2022-07-29 15:23:42"}
+{"level":"info","message":"This is login admin info","timestamp":"2022-07-29 15:25:08"}
+{"level":"warn","message":"This is login admin warn","timestamp":"2022-07-29 15:25:08"}
+{"level":"info","message":"This is login admin info","timestamp":"2022-07-29 15:26:00"}
+{"level":"warn","message":"This is login admin warn","timestamp":"2022-07-29 15:26:00"}
+{"level":"info","message":"This is login admin info","timestamp":"2022-07-29T10:06:58.921Z"}
+{"level":"warn","message":"This is login admin warn","timestamp":"2022-07-29T10:06:58.922Z"}
+{"level":"info","message":"This is login admin info","timestamp":"2022-07-29 15:55:02"}
+{"level":"warn","message":"This is login admin warn","timestamp":"2022-07-29 15:55:02"}
+{"level":"info","message":"This is login admin info","timestamp":"2022-07-29 15:59:56"}
+{"level":"warn","message":"This is login admin warn","timestamp":"2022-07-29 15:59:56"}
+{"level":"info","message":"This is login admin info","timestamp":"2022-07-29 16:01:46"}
+{"level":"warn","message":"This is login admin warn","timestamp":"2022-07-29 16:01:46"}
+{"0":"e","1":"m","10":"e","2":"p","3":"-","4":"s","5":"e","6":"r","7":"v","8":"i","9":"c","level":"info","message":"This is login admin info","metaData":"login","timestamp":"2022-07-29 16:04:25"}
+{"0":"e","1":"m","10":"e","2":"p","3":"-","4":"s","5":"e","6":"r","7":"v","8":"i","9":"c","level":"warn","message":"This is login admin warn","timestamp":"2022-07-29 16:04:25"}
+{"level":"info","message":"This is login admin info","metaData":"login","service":"emp-service","timestamp":"2022-07-29 16:05:44"}
+{"level":"warn","message":"This is login admin warn","service":"emp-service","timestamp":"2022-07-29 16:05:44"}
+{"level":"info","message":"This is login admin info","metaData":"login","service":"emp-service","timestamp":"2022-07-29 16:10:16"}
+{"level":"warn","message":"This is login admin warn","service":"emp-service","timestamp":"2022-07-29 16:10:16"}
+{"level":"info","message":"This is login admin info","metaData":"login","service":"emp-service","timestamp":"2022-07-29 16:10:35"}
+{"level":"warn","message":"This is login admin warn","service":"emp-service","timestamp":"2022-07-29 16:10:35"}
+{"level":"info","message":"This is login admin info","metaData":"login","service":"emp-service","timestamp":"2022-07-29 16:10:45"}
+{"level":"warn","message":"This is login admin warn","service":"emp-service","timestamp":"2022-07-29 16:10:45"}
+{"level":"info","message":"This is register admin info","service":"emp-service","timestamp":"2022-07-29 17:09:43"}
+{"level":"warn","message":"This is register admin warn","service":"emp-service","timestamp":"2022-07-29 17:09:43"}
+{"level":"error","service":"emp-service","timestamp":"2022-07-29 17:09:43"}
+{"level":"info","message":"This is register admin info","service":"emp-service","timestamp":"2022-07-29 17:15:30"}
+{"level":"warn","message":"This is register admin warn","service":"emp-service","timestamp":"2022-07-29 17:15:30"}
+{"level":"error","service":"emp-service","timestamp":"2022-07-29 17:15:30"}

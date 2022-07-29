@@ -3,16 +3,73 @@ import registerEmployee from "../services/registrationService";
 import manageAttendance from "../services/attendanceService";
 import manageProject from "../services/projectAllocationService";
 import adminService from "../services/adminService";
-
+import logger from "../logger/index";
 const router = Router();
 
+
+
 //Register admin
+/**
+ * @openapi
+ * 
+ * '/register-admin':
+ *  post:
+ *     summary: "is used for admin registration"
+ *     tags:
+ *     - Registration
+ *     description: Register a admin user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *             schema:
+ *                $ref: '#components/schemas/registerAdmin'
+ *     responses:
+ *       200:
+ *         description: Success
+ *       400:
+ *         description: Bad Request
+ *  
+ */
 router.post('/register-admin',(req, res)=>{
+    logger.info('This is register admin info');
+    logger.warn('This is register admin warn');
+    logger.error(new Error('This is register admin error'));
     adminService.registerAdmin(req, res);
 })
 
+
+
 // admin login 
+/**
+ * @openapi
+ * 
+ * '/login':
+ *  post:
+ *     summary: "is used for admin login"
+ *     tags:
+ *     - Login
+ *     description: Login user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/loginAdmin'
+ *     responses:
+ *       200:
+ *         description: Success
+ *         content:
+ *           application/json:
+ *               schema:
+ *                  $ref: '#/components/schemas/loginResponse'
+ *       400:
+ *         description: Bad Request
+ *  
+ */
 router.post('/login',(req, res)=>{
+    logger.info('This is login admin info',{ metaData : 'login' });
+    logger.warn('This is login admin warn');
     adminService.loginAdmin(req, res);
 })
 

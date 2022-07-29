@@ -2,6 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const EmployeeSchema = new mongoose_1.Schema({
+    employeeId: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    },
     firstname: {
         type: String,
         trim: true,
@@ -30,4 +36,4 @@ const EmployeeSchema = new mongoose_1.Schema({
         trim: true
     }
 });
-exports.default = (0, mongoose_1.model)('Registration', EmployeeSchema);
+exports.default = (0, mongoose_1.model)('Registration', EmployeeSchema, 'employeeProfileData');

@@ -3,11 +3,12 @@ import http from 'http';
 import router from './routes/route';
 import adminService from './services/adminService';
 import mongoConnection from './utils/mongodbConnection';
+import swaggerDocs from './docs/swagger';
 
 
-const port = process.env.PORT || 3000;
+const port = 3000;
 
-const app: express.Application = express();
+const app = express();
 mongoConnection.init();
 
 app.use(express.json());
@@ -20,6 +21,7 @@ app.use('/',router);
 
 http.createServer(app).listen(port,()=>{
     console.log(`server started on port ${port}`);
+    swaggerDocs(app, port);
 });
 
 
